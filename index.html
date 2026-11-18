@@ -72,6 +72,9 @@
     <!-- РЕЖИМ 2: КОНВЕРТ (Для получателя) -->
     <div id="receiver-view" class="container hidden">
         <div class="envelope-wrapper">
+            <!-- Открытка лежит ВНУТРИ конверта изначально -->
+            <div id="unpacked-card" class="postcard hidden"></div>
+
             <div id="envelope" class="envelope" onclick="openEnvelope()">
                 <div class="envelope-flap"></div>
                 <div class="wax-seal">⚜️</div>
@@ -79,8 +82,6 @@
                     <p class="envelope-hint">Нажмите на печать, чтобы открыть письмо</p>
                 </div>
             </div>
-            <!-- Достающаяся открытка -->
-            <div id="unpacked-card" class="postcard hidden"></div>
         </div>
         <button class="secondary-btn hidden" id="create-own-btn" onclick="resetToCreator()">Создать свою открытку</button>
     </div>
