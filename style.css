@@ -166,7 +166,7 @@ header p { color: #736253; font-size: 1.1rem; }
     border-radius: 4px;
     cursor: pointer;
     font-family: inherit;
-    font-size: 0.85srem;
+    font-size: 0.85rem;
     transition: 0.2s;
 }
 
@@ -192,23 +192,28 @@ header p { color: #736253; font-size: 1.1rem; }
 
 .primary-btn:hover { background: #4a3525; }
 
-/* 3D Конверт для получателя */
+/* Контейнер конверта */
 .envelope-wrapper {
     position: relative;
-    width: 400px;
-    height: 260px;
-    margin: 40px auto;
+    width: 480px;
+    height: 320px;
+    margin: 60px auto;
+    perspective: 1000px;
 }
 
+/* Конверт теперь лежит ПОВЕРХ открытки */
 .envelope {
     width: 100%;
     height: 100%;
     background: #d9c5b2;
     border-radius: 6px;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     transition: transform 0.6s ease;
+    z-index: 10;
 }
 
 .envelope-flap {
@@ -217,9 +222,9 @@ header p { color: #736253; font-size: 1.1rem; }
     left: 0;
     width: 0;
     height: 0;
-    border-left: 200px solid transparent;
-    border-right: 200px solid transparent;
-    border-top: 130px solid #c8b09b;
+    border-left: 240px solid transparent;
+    border-right: 240px solid transparent;
+    border-top: 140px solid #c8b09b;
     transform-origin: top;
     transition: transform 0.6s ease 0.2s;
     z-index: 3;
@@ -227,7 +232,7 @@ header p { color: #736253; font-size: 1.1rem; }
 
 .wax-seal {
     position: absolute;
-    top: 105px;
+    top: 115px;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 50px;
@@ -255,13 +260,22 @@ header p { color: #736253; font-size: 1.1rem; }
 .envelope-hint {
     font-size: 0.9rem;
     color: #5c4738;
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.8);
     display: inline-block;
     padding: 4px 10px;
     border-radius: 4px;
 }
 
-/* Состояние открытого конверта */
+/* Открытка спрятана внутри конверта */
+#unpacked-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* АНИМАЦИЯ ОТКРЫТИЯ */
 .envelope.open .envelope-flap {
     transform: rotateX(180deg);
     z-index: 1;
@@ -270,6 +284,12 @@ header p { color: #736253; font-size: 1.1rem; }
 .envelope.open .wax-seal {
     opacity: 0;
     pointer-events: none;
+}
+
+/* Когда конверт открыт, открытка плавно выезжает вверх */
+.envelope.open ~ #unpacked-card {
+    transform: translateY(-110px);
+    z-index: 5;
 }
 
 .secondary-btn {
