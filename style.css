@@ -1,0 +1,284 @@
+:root {
+    --bg-color: #f4f0ea;
+    --text-color: #2c221e;
+    --accent: #8b4513;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Playfair Display', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    text-align: center;
+}
+
+.hidden { display: none !important; }
+
+header { margin-bottom: 30px; }
+header h1 { font-size: 2.2rem; margin-bottom: 5px; color: #4a3525; }
+header p { color: #736253; font-size: 1.1rem; }
+
+/* Рабочая зона мастера */
+.workspace {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Сама открытка */
+.postcard {
+    width: 480px;
+    height: 320px;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    display: flex;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.postcard-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+}
+
+.left-side {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.left-side textarea {
+    width: 100%;
+    height: 70%;
+    background: transparent;
+    border: none;
+    resize: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: inherit;
+    outline: none;
+}
+
+.signature-line {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.95rem;
+}
+
+.signature-line input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px dashed rgba(0,0,0,0.3);
+    font-family: inherit;
+    outline: none;
+    width: 120px;
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-left: 1px dashed rgba(0,0,0,0.15);
+    padding-left: 15px;
+}
+
+.stamp {
+    width: 50px;
+    height: 60px;
+    background: #fff;
+    border: 2px solid #d4c3b3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.postmark {
+    font-size: 0.75rem;
+    color: #8c7865;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Текстуры бумаги */
+.paper-craft { background-color: #e6d7c3; background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 0); background-size: 16px 16px; }
+.paper-parchment { background-color: #f7f3e8; background-image: linear-gradient(0deg, rgba(139,69,19,0.03) 1px, transparent 1px); }
+.paper-linen { background-color: #faf8f5; }
+
+/* Шрифты */
+.font-handwriting { font-family: 'Bad Script', cursive; font-size: 1.3rem; }
+.font-serif { font-family: 'Playfair Display', serif; }
+.font-mono { font-family: 'PT Mono', monospace; font-size: 0.95rem; }
+
+/* Панель управления */
+.control-panel {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+}
+
+.control-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #5c4738;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.btn-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-row button {
+    flex: 1;
+    padding: 8px;
+    background: #f4f0ea;
+    border: 1px solid #d4c3b3;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85srem;
+    transition: 0.2s;
+}
+
+.btn-row button.active {
+    background: #8b4513;
+    color: #fff;
+    border-color: #8b4513;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 12px;
+    background: #5c4738;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+.primary-btn:hover { background: #4a3525; }
+
+/* 3D Конверт для получателя */
+.envelope-wrapper {
+    position: relative;
+    width: 400px;
+    height: 260px;
+    margin: 40px auto;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    background: #d9c5b2;
+    border-radius: 6px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.6s ease;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-top: 130px solid #c8b09b;
+    transform-origin: top;
+    transition: transform 0.6s ease 0.2s;
+    z-index: 3;
+}
+
+.wax-seal {
+    position: absolute;
+    top: 105px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: #990000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffcc00;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 4;
+    transition: opacity 0.3s ease;
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.envelope-hint {
+    font-size: 0.9rem;
+    color: #5c4738;
+    background: rgba(255,255,255,0.6);
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* Состояние открытого конверта */
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope.open .wax-seal {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.secondary-btn {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #5c4738;
+    color: #5c4738;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Винтажное почтовое ателье</title>
+    <!-- Подключаем красивые шрифты с Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=PT+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- РЕЖИМ 1: МАСТЕРСКАЯ (Создание открытки) -->
+    <div id="creator-view" class="container">
+        <header>
+            <h1>Почтовое ателье</h1>
+            <p>Создайте атмосферное послание для близкого человека</p>
+        </header>
+
+        <main class="workspace">
+            <!-- Превью открытки -->
+            <div id="postcard-preview" class="postcard paper-craft font-handwriting">
+                <div class="postcard-content">
+                    <div class="left-side">
+                        <textarea id="card-text" placeholder="Напишите ваше теплое послание здесь..."></textarea>
+                        <div class="signature-line">
+                            <span>От: <input type="text" id="card-from" placeholder="Ваше имя"></span>
+                            <span>Кому: <input type="text" id="card-to" placeholder="Имя получателя"></span>
+                        </div>
+                    </div>
+                    <div class="right-side">
+                        <div class="stamp stamp-botanical">🌿</div>
+                        <div class="postmark">Самара • 2026</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Панель управления (Инструменты) -->
+            <aside class="control-panel">
+                <div class="control-group">
+                    <label>Текстура бумаги</label>
+                    <div class="btn-row">
+                        <button class="active" onclick="setPaper('craft')">Крафт</button>
+                        <button onclick="setPaper('parchment')">Пергамент</button>
+                        <button onclick="setPaper('linen')">Лен</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Почерк (Шрифт)</label>
+                    <div class="btn-row">
+                        <button class="active" onclick="setFont('handwriting')">Курсив</button>
+                        <button onclick="setFont('serif')">Классика</button>
+                        <button onclick="setFont('mono')">Печатная</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Выбор марки</label>
+                    <div class="btn-row">
+                        <button class="active" onclick="setStamp('🌿')">🌿 Ботаника</button>
+                        <button onclick="setStamp('⭐')">⭐ Космос</button>
+                        <button onclick="setStamp('🏛️')">🏛️ Архитектура</button>
+                    </div>
+                </div>
+
+                <button id="seal-btn" class="primary-btn" onclick="generateLink()">Запечатать и получить ссылку ✉️</button>
+            </aside>
+        </main>
+    </div>
+
+    <!-- РЕЖИМ 2: КОНВЕРТ (Для получателя) -->
+    <div id="receiver-view" class="container hidden">
+        <div class="envelope-wrapper">
+            <div id="envelope" class="envelope" onclick="openEnvelope()">
+                <div class="envelope-flap"></div>
+                <div class="wax-seal">⚜️</div>
+                <div class="envelope-body">
+                    <p class="envelope-hint">Нажмите на печать, чтобы открыть письмо</p>
+                </div>
+            </div>
+            <!-- Достающаяся открытка -->
+            <div id="unpacked-card" class="postcard hidden"></div>
+        </div>
+        <button class="secondary-btn hidden" id="create-own-btn" onclick="resetToCreator()">Создать свою открытку</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
